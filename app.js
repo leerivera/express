@@ -16,5 +16,25 @@ app.get('/api/products', (req, res) => {
     res.json(newProducts)
 })
 
+app.get('api/products/:productID', (req, res)=> {
+    const { productID } = req.params;
+
+    const singleProduct = products.find((product) => product.id === Number(productID))
+    console.log(singleProduct)
+    res.json(singleProduct)
+})
+
+app.get('api/products/:productID/reviews/:reviewID', (req, res) => {
+    console.log(req.params)
+    
+    res.send('hello world')
+})
+
+app.get('api/v1/query', (req, res) => {
+    console.log(req.query)
+    let sortedProducts = [...products]
+    res.send('hello world')
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
