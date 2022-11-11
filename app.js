@@ -40,6 +40,10 @@ app.get('api/v1/query', (req, res) => {
             return product.name.startsWith(search)
         })
     }
+
+    if(limit){
+        sortedProducts = sortedProducts.slice(0,Number(limit))
+    }
     res.send('hello world')
 })
 
