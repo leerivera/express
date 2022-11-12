@@ -1,30 +1,19 @@
 const express = require('express')
 const app = express()
+let { people } = require('./data')
 const port = 3000
-const logger =require('./logger')
-const authorize = require('./authorize')
 
-app.use([authorize, logger])
-//if no route is chosen the middleware will be applied everywhere
-
-//req => middleware => res
-
-
-app.get('/',(req, res) => {
- 
-  res.send("Home") 
+app.get('/api/people', (req, res) => {
+    res.status(200).json({ success: true, data: people})
 })
 
-app.get('/about',  (req, res) => res.send('About page'))
+app.post('/api/people', (req, res) => {
+    const { name } = req.body
+    if(!name) {
+        res.status(400).json({ success: false, msg: 'please provide name value'})
 
-app.get('/api/products', (req, res) => {
- 
-    res.send("products") 
-  })
 
-  app.get('/api/items', (req, res) => {
- 
-    res.send("Items") 
-  })
-
+    }
+    res.status(201).json({ success: true, person: name })
+})
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
