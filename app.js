@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 let { people } = require('./data')
+
+//static assests
+
+app.use(express.static('./methods-public'))
 const port = 3000
 
 app.get('/api/people', (req, res) => {
