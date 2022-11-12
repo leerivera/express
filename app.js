@@ -7,6 +7,8 @@ let { people } = require('./data')
 app.use(express.static('./methods-public'))
 
 app.use(express.urlencoded({extended: false}))
+
+app.use(express.json())
 const port = 3000
 
 app.get('/api/people', (req, res) => {
@@ -32,4 +34,14 @@ app.post('/api/postman/people', (req, res) =>{
     }
     res.status(201).json({ success: true, data: [...people, name]})
 })
+
+app.post('/login', (req, res) => {
+    const { name } = req.body
+    if (name) {
+        return res.status(200).send(`Whats up ${name}`)
+    }
+    res.status(401).send('Are you supposed to be here')
+})
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
