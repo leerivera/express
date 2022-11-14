@@ -10,7 +10,7 @@ app.use(express.static('./methods-public'))
 app.use(express.urlencoded({extended: false}))
 //parse json
 app.use(express.json())
-const port = 3000
+const port = 5000
 
 app.get('/api/people', (req, res) => {
     
