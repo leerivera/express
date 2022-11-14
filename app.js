@@ -7,7 +7,7 @@ let { people } = require('./data')
 app.use(express.static('./methods-public'))
 
 app.use(express.urlencoded({extended: false}))
-
+//parse json
 app.use(express.json())
 const port = 3000
 
